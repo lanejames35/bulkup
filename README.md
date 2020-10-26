@@ -30,6 +30,7 @@ USAGE
 <!-- commands -->
 * [`bulkup hello`](#bulkup-hello)
 * [`bulkup help [COMMAND]`](#bulkup-help-command)
+* [`bulkup login`](#bulkup-login)
 
 ## `bulkup hello`
 
@@ -65,4 +66,22 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src\commands\help.ts)_
+
+## `bulkup login`
+
+Describe the command here
+
+```
+USAGE
+  $ bulkup login
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src\commands\login.js](https://github.com/lanejames35/bulkup/blob/v0.0.0/src\commands\login.js)_
 <!-- commandsstop -->
