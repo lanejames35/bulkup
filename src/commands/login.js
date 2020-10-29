@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { Command } = require('@oclif/command')
 const fetch = require('node-fetch')
 const { URLSearchParams } = require('url')
@@ -14,10 +15,7 @@ class LoginCommand extends Command {
     // Post an authorization request to the Salesforce token endpoint
     const authorizationParams = new URLSearchParams()
     authorizationParams.append('response_type', 'device_code')
-    authorizationParams.append(
-      'client_id',
-      '3MVG9l2zHsylwlpRMdxSJfjHJuwMikx7T4H0MkhAdtSLSGCHuyTXrFc1l7QgQhDBZuvVbj5hC1RNhPTbrazBG'
-    )
+    authorizationParams.append('client_id', process.env.CLIENT_ID)
     try {
       const authorizationRequest = await fetch(
         'https://mohcontacttracing.my.salesforce.com/services/oauth2/token',
@@ -36,10 +34,7 @@ class LoginCommand extends Command {
       // 4. Obtain a access token from the same token endpoint
       const tokenParams = new URLSearchParams()
       tokenParams.append('grant_type', 'device')
-      tokenParams.append(
-        'client_id',
-        '3MVG9l2zHsylwlpRMdxSJfjHJuwMikx7T4H0MkhAdtSLSGCHuyTXrFc1l7QgQhDBZuvVbj5hC1RNhPTbrazBG'
-      )
+      tokenParams.append('client_id', process.env.CLIENT_ID)
       tokenParams.append('code', authorizationBody.device_code)
       const tokenRequest = await fetch(
         'https://mohcontacttracing.my.salesforce.com/services/oauth2/token',
