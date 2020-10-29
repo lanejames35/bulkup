@@ -1,4 +1,4 @@
-const { Command, flags } = require('@oclif/command')
+const { Command } = require('@oclif/command')
 const fetch = require('node-fetch')
 const { URLSearchParams } = require('url')
 const open = require('open')
@@ -6,10 +6,9 @@ const Conf = require('conf')
 
 class LoginCommand extends Command {
   async run() {
-    // const { flags } = this.parse(LoginCommand)
-    // const name = flags.name || 'world'
     // OAuth 2.0 Device flow
     // https://oauth.net/2/device-flow/
+    this.log('Redirecting to Salesforce to login...Close your browser when you\'re done')
 
     // 1. Device request authorization
     // Post an authorization request to the Salesforce token endpoint
@@ -53,9 +52,9 @@ class LoginCommand extends Command {
       // C:\Users\lane_j\AppData\Roaming\bulkup-nodejs\Config\config.json
       const config = new Conf()
       config.set('accessToken', tokenBody.access_token)
-      this.log('Success! Obtained token:', tokenBody)
+      this.log('Login complete!')
     } catch (error) {
-      this.log('An error ocurred: %s', error)
+      this.log('An error ocurred:', error)
     }
   }
 }
