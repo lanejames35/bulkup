@@ -50,6 +50,7 @@ class LoginCommand extends Command {
       const tokenBody = await tokenRequest.json()
 
       // Save the access token
+      // C:\Users\lane_j\AppData\Roaming\bulkup-nodejs\Config\config.json
       const config = new Conf()
       config.set('accessToken', tokenBody.access_token)
       this.log('Success! Obtained token:', tokenBody)
