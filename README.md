@@ -31,6 +31,7 @@ USAGE
 * [`bulkup hello`](#bulkup-hello)
 * [`bulkup help [COMMAND]`](#bulkup-help-command)
 * [`bulkup login`](#bulkup-login)
+* [`bulkup prepare:client`](#bulkup-prepareclient)
 
 ## `bulkup hello`
 
@@ -75,6 +76,21 @@ Describe the command here
 USAGE
   $ bulkup login
 
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src\commands\login.js](https://github.com/lanejames35/bulkup/blob/v0.0.0/src\commands\login.js)_
+
+## `bulkup prepare:client`
+
+Describe the command here
+
+```
+USAGE
+  $ bulkup prepare:client
+
 OPTIONS
   -n, --name=name  name to print
 
@@ -83,5 +99,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src\commands\login.js](https://github.com/lanejames35/bulkup/blob/v0.0.0/src\commands\login.js)_
+_See code: [src\commands\prepare\client.js](https://github.com/lanejames35/bulkup/blob/v0.0.0/src\commands\prepare\client.js)_
 <!-- commandsstop -->
