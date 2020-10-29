@@ -2,6 +2,7 @@ const { Command, flags } = require('@oclif/command')
 const fetch = require('node-fetch')
 const { URLSearchParams } = require('url')
 const open = require('open')
+const Conf = require('conf')
 
 class LoginCommand extends Command {
   async run() {
@@ -27,8 +28,10 @@ class LoginCommand extends Command {
       const authorizationBody = await authorizationRequest.json()
 
       // 3. User authenticates and authorizes
-      open(
-        `${authorizationBody.verification_uri}?user_code=${authorizationBody.user_code}`
+      this.log(authorizationBody)
+      await open(
+        `${authorizationBody.verification_uri}?user_code=${authorizationBody.user_code}`,
+        { wait: true, app: 'chrome' }
       )
 
       // 4. Obtain a access token from the same token endpoint
@@ -38,13 +41,18 @@ class LoginCommand extends Command {
         'client_id',
         '3MVG9l2zHsylwlpRMdxSJfjHJuwMikx7T4H0MkhAdtSLSGCHuyTXrFc1l7QgQhDBZuvVbj5hC1RNhPTbrazBG'
       )
+      tokenParams.append('code', authorizationBody.device_code)
       const tokenRequest = await fetch(
         'https://mohcontacttracing.my.salesforce.com/services/oauth2/token',
         { method: 'POST', body: tokenParams }
       )
       // 2. Salesforce returns an access token
       const tokenBody = await tokenRequest.json()
-      this.log(`Success! Obtained token: ${tokenBody}`)
+
+      // Save the access token
+      const config = new Conf()
+      config.set('accessToken', tokenBody.access_token)
+      this.log('Success! Obtained token:', tokenBody)
     } catch (error) {
       this.log('An error ocurred: %s', error)
     }
